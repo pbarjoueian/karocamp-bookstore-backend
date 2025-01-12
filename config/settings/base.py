@@ -31,27 +31,19 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(",")
 
 
 # Application definition
-THIRD_APPS = [
-    "rest_framework",
-]
 
-PROJECT_APPS = [
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "drf_spectacular",
     "account",
     "store",
 ]
-
-INSTALLED_APPS = (
-    [
-        "django.contrib.admin",
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.sessions",
-        "django.contrib.messages",
-        "django.contrib.staticfiles",
-    ]
-    + THIRD_APPS
-    + PROJECT_APPS
-)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
