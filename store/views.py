@@ -2,12 +2,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated  # NOQA
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Author, Book, Publication
-from .serializers import (
-    AuthorSerializer,
-    BookCreateSerializer,
-    BookReadSerializer,
-    PublicationSerializer,
-)
+from .serializers import AuthorSerializer, BookSerializer, PublicationSerializer
 
 
 class AuthorViewSet(ModelViewSet):
@@ -50,7 +45,7 @@ class PublicationViewSet(ModelViewSet):
 
 class BookViewSet(ModelViewSet):
     queryset = Book.objects.all()
-    serializer_class = BookReadSerializer
+    serializer_class = BookSerializer
     permission_classes = (IsAuthenticated,)
 
     def get_permissions(self):
@@ -62,12 +57,6 @@ class BookViewSet(ModelViewSet):
         else:
             permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
-
-    def get_serializer_class(self):
-        if self.action in ["list", "retrieve"]:
-            return BookReadSerializer
-        else:
-            return BookCreateSerializer
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)

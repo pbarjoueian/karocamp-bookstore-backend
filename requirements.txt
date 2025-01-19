@@ -1,0 +1,11 @@
+django==4.2.11
+djangorestframework
+markdown
+django-filter
+django-environ==0.11.2
+phonenumbers==8.13.47
+django-phonenumber-field==8.0.0
+djangorestframework-simplejwt==5.3.1
+drf-spectacular
+uwsgi
+psycopg2-binary
